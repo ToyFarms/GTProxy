@@ -91,9 +91,11 @@ enum PacketFlag : uint32_t {
 #pragma pack(push, 1)
 struct GameUpdatePacket {
     PacketType type;
-    uint8_t pad[3];
+    uint8_t object_type;
+    uint8_t jump_count;
+    uint8_t animation_type;
     uint32_t net_id;
-    uint8_t pad_2[4];
+    uint32_t target_net_id;
 
     union {
         PacketFlag value;
@@ -124,9 +126,15 @@ struct GameUpdatePacket {
         };
     } flags;
 
-    uint8_t pad_3[4];
-    uint32_t decompressed_data_size;
-    uint8_t pad_4[28];
+    float float_var;
+    uint32_t value;
+    float vec_x;
+    float vec_y;
+    float vec2_x;
+    float vec2_y;
+    float particle_rot;
+    int32_t int_x;
+    int32_t int_y;
     uint32_t data_size;
 };
 #pragma pack(pop)

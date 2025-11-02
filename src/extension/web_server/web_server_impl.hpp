@@ -215,14 +215,14 @@ protected:
 
           auto url = std::format(
               "https://{}",
-              resolve_ip_address(core_->get_config().get("server.address")));
+              resolve_ip_address(core_->get_config().get("web_server.address")));
           spdlog::info("URL: {}", url);
           httplib::Client cli{url};
           cli.enable_server_certificate_verification(false);
 
           const httplib::Headers headers{
               {"User-Agent", get_header_value(req.headers, "User-Agent")},
-              {"Host", core_->get_config().get("server.address")}};
+              {"Host", core_->get_config().get("web_server.address")}};
 
           httplib::Result result{
               cli.Post("/growtopia/server_data.php", headers, req.params)};
@@ -249,10 +249,10 @@ protected:
 
           // Set server address and port that client (Growtopia) should connect
           // to.
-          text_parse.set("server", {"127.0.0.1"});
+          text_parse.set("server", {core_->get_config().get("enet.address")});
           text_parse.set("port",
                          {std::to_string(core_->get_config().get<unsigned int>(
-                             "server.port"))});
+                             "enet.port"))});
           text_parse.set("type2", {"1"});
 
           res.set_content(text_parse.get_raw(), "text/html");

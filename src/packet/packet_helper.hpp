@@ -57,11 +57,6 @@ struct PacketHelper {
 
         if constexpr (is_net_message<Packet>::value) {
             packet.write(byte_stream);
-            std::cout << "LOOOOOOOOO\n";
-            for (auto b : byte_stream.get_data()) {
-                std::cout << std::to_integer<int>(b) << std::endl;
-            }
-            std::cout << "\n";
         }
         else if constexpr (is_net_packet<Packet>::value) {
             GameUpdatePacket game_packet{};

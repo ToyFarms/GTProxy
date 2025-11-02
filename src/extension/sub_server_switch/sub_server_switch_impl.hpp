@@ -73,10 +73,10 @@ public:
                 port_ = evt_variant.get<int32_t>(1);
 
                 packet::game::OnSendToServer packet{};
-                packet.port = core_->get_config().get<unsigned int>("server.port");
+                packet.port = core_->get_config().get<unsigned int>("enet.port");
                 packet.token = evt_variant.get<int32_t>(2);
                 packet.user = evt_variant.get<int32_t>(3);
-                packet.address = "127.0.0.1";
+                packet.address = core_->get_config().get("enet.address");
                 packet.door_id = tokenize.size() == 2
                     ? ""
                     : tokenize.at(1);

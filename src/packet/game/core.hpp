@@ -31,4 +31,23 @@ struct OnSendToServer : NetPacket<PacketType::PACKET_CALL_FUNCTION> {
         ext_data = variant.serialize();
     }
 };
+
+struct OnParticleEffect : NetPacket<PacketType::PACKET_CALL_FUNCTION> {
+    uint32_t id;
+    float x;
+    float y;
+
+    void write(GameUpdatePacket& game_update_packet, std::vector<std::byte>& ext_data)
+    {
+        packet::Variant variant{
+            "OnParticleEffect",
+            id,
+            glm::vec2{x, y},
+            static_cast<int32_t>(0),
+            static_cast<int32_t>(0),
+        };
+
+        ext_data = variant.serialize();
+    }
+};
 }

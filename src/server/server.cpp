@@ -12,7 +12,7 @@ namespace server {
 Server::Server(core::Core *core) : core_{core}, player_{nullptr} {
   ENetAddress address{};
   address.host = ENET_HOST_ANY;
-  address.port = core->get_config().get<unsigned int>("server.port");
+  address.port = core->get_config().get<unsigned int>("enet.port");
 
   host_ = enet_host_create(&address, 1, 2, 0, 0);
   if (!host_) {

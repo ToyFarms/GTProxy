@@ -17,7 +17,7 @@ public:
     void disconnect_now() const { enet_peer_disconnect_now(peer_, 0); }
     void disconnect_later() const { enet_peer_disconnect_later(peer_, 0); }
 
-    [[nodiscard]] bool send_packet(const std::vector<std::byte>& data, int channel = 0) const;
+    bool send_packet(const std::vector<std::byte>& data, int channel = 0) const;
 
     [[nodiscard]] ENetPeer* get_peer() const { return peer_; }
 

@@ -138,8 +138,9 @@ public:
         return key_values;
     }
 
-    [[nodiscard]] std::unordered_map<std::string, std::vector<std::string>> get_data() const { return data_; }
+    [[nodiscard]] std::unordered_map<std::string, std::vector<std::string>>& get_data() { return data_; }
     [[nodiscard]] bool empty() const { return data_.empty(); }
+    [[nodiscard]] bool contains(const char *key) const { return data_.find(key) != data_.end(); }
 
 private:
     std::unordered_map<std::string, std::vector<std::string>> data_;

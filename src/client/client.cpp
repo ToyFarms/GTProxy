@@ -43,8 +43,8 @@ Client::Client(core::Core* core)
 
             const core::Config config{ core_->get_config() };
             std::ignore = connect(
-                config.get<std::string>("server.address"),
-                config.get<unsigned int>("server.port")
+                config.get<std::string>("enet.address"),
+                config.get<unsigned int>("enet.port")
             );
         }
     );
